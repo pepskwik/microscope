@@ -1,0 +1,13 @@
+#!/bin/sh
+
+./scripts/lint.sh modified
+linter_exit_code=$?
+
+if [ linter_exit_code != 0 ]
+then
+  echo "Linter errors detected in pre-commit hook."
+  echo 
+  echo "Run the linter with ./scripts/lint.sh"
+  echo
+  exit 1
+fi
