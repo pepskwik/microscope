@@ -1,0 +1,22 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker info
+    - docker build -t rtorino/microscope-github .
+
+test:
+  override:
+    - npm install -g jshint
+    - npm install -g jscs
+    - npm install -g eslint
+    - ./scripts/lint.sh
+
+deployment:
+  hub:
+    branch: develop
+    commands:
+      - $DEPLOY
+
